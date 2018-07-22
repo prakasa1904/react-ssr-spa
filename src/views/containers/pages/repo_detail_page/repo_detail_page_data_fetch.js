@@ -8,6 +8,7 @@ export default function fetchData(match, dispatch, state) {
       return false;
     }
   }
+
   return asyncRepoDetailPageAction(match.params, dispatch, state).catch(
     function handleActionError(err) {
       log.error(err);

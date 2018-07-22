@@ -8,6 +8,7 @@ gulp.task('webpack-prod', function webpackProd(callback) {
     if (err) {
       throw new gutil.PluginError('webpack', err);
     }
+
     gutil.log('[webpack]', stats.toString({}));
     callback();
   });

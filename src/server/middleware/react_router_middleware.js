@@ -4,6 +4,7 @@ import createMemoryHistory from 'history/createMemoryHistory';
 import { renderToString } from 'react-dom/server';
 import { matchRoutes } from 'react-router-config';
 import { existsSync } from 'fs';
+import moment from 'moment';
 import path from 'path';
 import serialize from 'serialize-javascript';
 import redisClient from '../services/redis_service';
@@ -50,6 +51,7 @@ export default (req, res) => {
       if (route.chunk) {
         list.push(route.chunk);
       }
+
       return list;
     }, []);
 
@@ -91,10 +93,12 @@ export default (req, res) => {
         });
 
         res.end(renderedDOM);
+
         if (config.get('cacheEnabled')) {
-          redisClient.setex(htmlKey, cacheExpire, renderedDOM);
+          redisClient.setex(htmlKey, cacheExpire, `${renderedDOM}<!--cached at ${moment().unix()}-->`);
           redisClient.setex(statusKey, cacheExpire, status);
         }
+
         return false;
       })
       .catch(err => {
@@ -119,9 +123,11 @@ export default (req, res) => {
       if (!cacheResponse[0] || !cacheResponse[1]) {
         throw new Error('Not in cache');
       }
+
       res.writeHead(cacheResponse[0], {
         'Content-Type': 'text/html'
       });
+
       return res.end(cacheResponse[1]);
     })
     .catch(returnFromApi);

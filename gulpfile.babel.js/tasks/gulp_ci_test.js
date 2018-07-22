@@ -17,10 +17,13 @@ gulp.task('ci-test', function test(cb) {
     err => {
       if (err) {
         const exitCode = 2;
+
         log('[ERROR] gulp build task failed', err);
         log(`[FAIL] gulp build task failed - exiting with code ${exitCode}`);
+
         return process.exit(exitCode);
       }
+
       return cb();
     }
   );

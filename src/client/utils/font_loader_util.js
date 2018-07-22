@@ -10,6 +10,7 @@ export default class FontLoaderUtil {
     const font = new FontFaceObserver('AmbleLight');
     const font2 = new FontFaceObserver('Amble');
     const fontPromise = P.all([font.load(), font2.load()]);
+
     return fontPromise
       .then(function fontLoadSuccess() {
         document.documentElement.className +=

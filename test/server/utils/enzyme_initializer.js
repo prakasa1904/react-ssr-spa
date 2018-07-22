@@ -4,6 +4,7 @@ import '../../../src/server/utils/react_raf_util';
 const exposedProperties = ['window', 'navigator', 'document'];
 
 const jsdom = new JSDOM('');
+
 global.document = jsdom.window.document;
 global.window = jsdom.window;
 

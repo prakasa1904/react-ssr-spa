@@ -18,6 +18,7 @@ process.once('SIGINT', function handleSIGINT(err) {
 
 process.on('message', function handleMessage(message) {
   log.info(`Process event: message=${message}`);
+
   if (message === 'shutdown') {
     gracefulExit();
   }

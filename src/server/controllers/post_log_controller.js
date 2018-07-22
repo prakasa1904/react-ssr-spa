@@ -46,11 +46,13 @@ const loggerController = (req, res) => {
     res.status(200).json({
       status: 200
     });
+
     return false;
   }
 
   if (!validLevel) {
     const failedLogMessage = 'Log attempted with unsupported method.';
+
     log.warn(
       {
         req: req.url

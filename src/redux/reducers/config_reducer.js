@@ -4,5 +4,6 @@ export default function(state = {}, action) {
       initialPageLoad: false
     });
   }
+
   return state;
 }

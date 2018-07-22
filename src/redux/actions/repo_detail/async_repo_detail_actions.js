@@ -5,9 +5,11 @@ import log from '../../../services/logger_service';
 
 export default function fetchRepoDetail(params, dispatch, state) {
   dispatch(repoDetailActions.repoDetailLoading());
+
   return RepoDetailModel.fetch(params, state)
     .then(function handleRepoDetailData(repoData) {
       dispatch(repoDetailActions.repoDetailLoaded(repoData.data, state));
+
       return repoData.data;
     })
     .catch(function handleUserError(err) {

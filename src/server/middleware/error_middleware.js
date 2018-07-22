@@ -6,13 +6,16 @@ export default (err, req, res) => {
   if (err.code !== 'EBADCSRFTOKEN') {
     // handle CSRF token errors here
     res.status(403);
+
     return res.send('Form tampered with.');
   }
+
   log.fatal(
     err,
     `Error on request: method: ${req.method},
       url: ${req.url}`
   );
+
   // Check for dev here etc..
   // todo: email/alert dev team
   if (config.env === 'development') {
@@ -21,6 +24,8 @@ export default (err, req, res) => {
       error: err.stack
     });
   }
+
   res.status(500).send('Internal Error Occured.');
+
   return gracefulExit(err);
 };

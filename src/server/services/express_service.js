@@ -73,6 +73,7 @@ export const createOrGetServer = () => {
     server = http.createServer(app);
     expressGracefulExit.init(server);
   }
+
   return server;
 };
 

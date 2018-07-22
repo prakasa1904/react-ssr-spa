@@ -68,6 +68,7 @@ function mapDispatchToProps(dispatch) {
     goToSearch(e) {
       e.preventDefault();
       const query = this.searchQuery.value;
+
       dispatch(push(`/search/${query}`));
     }
   };

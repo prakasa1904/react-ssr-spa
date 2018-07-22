@@ -10,6 +10,7 @@ import './utils/uncaught_exception_util';
 
 process.send = process.send || (() => {});
 const port = config.get('port');
+
 app.use(errorMiddleware);
 
 const startServer = () => {
@@ -21,6 +22,7 @@ const startServer = () => {
       'Server is running.'
     );
   });
+
   process.send('ready');
   setServer(server);
 };

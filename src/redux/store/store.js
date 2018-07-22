@@ -25,6 +25,7 @@ export default function configureStore(history, initialState = {}, env) {
   } else {
     const composeEnhancers =
       window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose; // eslint-disable-line no-underscore-dangle, max-len
+
     store = createStore(
       reducer,
       initialState,
@@ -39,6 +40,7 @@ export default function configureStore(history, initialState = {}, env) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('../reducers', () => {
       const nextReducer = require('../reducers').default; // eslint-disable-line global-require
+
       store.replaceReducer(nextReducer);
     });
   }

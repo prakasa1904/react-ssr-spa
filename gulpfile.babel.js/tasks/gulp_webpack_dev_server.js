@@ -21,6 +21,7 @@ gulp.task('webpack-dev-server', function runWebpackDevServer(callback) {
       if (err) {
         log(err);
       }
+
       log('Webpack dev server listening at localhost:3001');
       callback();
     }

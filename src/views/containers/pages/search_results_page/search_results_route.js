@@ -14,17 +14,17 @@ const routeConfig = {
     if (Component) {
       return <Component />;
     }
+
     return <LazyComponent />;
   },
   loadData: Component ? Component.loadData : () => {},
   preloadChunk() {
-    return import(/* webpackChunkName: "search" */ './search_results_page').then(
-      resp => {
-        Component = resp.default;
-        routeConfig.loadData = Component.loadData;
-        return Component;
-      }
-    );
+    return import(/* webpackChunkName: "search" */ './search_results_page').then(resp => {
+      Component = resp.default;
+      routeConfig.loadData = Component.loadData;
+
+      return Component;
+    });
   },
   chunk: 'search'
 };

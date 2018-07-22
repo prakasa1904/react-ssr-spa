@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-// import { renderRoutes } from 'react-router-config';
 import Switch from 'react-router/Switch';
 import Route from 'react-router/Route';
 import { connect } from 'react-redux';
@@ -8,7 +7,6 @@ import ErrorBoundary from 'react-error-boundary';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import CSSTransition from 'react-transition-group/CSSTransition';
 
-import Header from './../../components/header/header';
 import Config from './../../components/config/config';
 import log from '../../../services/logger_service';
 
@@ -28,6 +26,7 @@ const renderRoutes = (routes, location) =>
             />
           );
         }
+
         return (
           <Route
             key={location.key}
@@ -47,6 +46,7 @@ class Layout extends Component {
     if (this.props.env === 'development') {
       return <script src="//localhost:35729/livereload.js" async />;
     }
+
     return '';
   }
 
@@ -61,34 +61,14 @@ class Layout extends Component {
 
     if (env === 'test') {
       return [
-        <script
-          key="vendor"
-          src={`/js/${this.props.manifestJSON['vendor.js']}`}
-          defer
-        />,
-        <script
-          key="bundle"
-          src={`/js/${this.props.manifestJSON['app.js']}`}
-          defer
-        />
+        <script key="vendor" src={`/js/${this.props.manifestJSON['vendor.js']}`} defer />,
+        <script key="bundle" src={`/js/${this.props.manifestJSON['app.js']}`} defer />
       ];
     }
 
     return [
-      <script
-        key="vendor"
-        src={`${this.props.staticVendorUrl}/${
-          this.props.manifestJSON['vendor.js']
-        }`}
-        defer
-      />,
-      <script
-        key="bundle"
-        src={`${this.props.staticBundleUrl}/js/${
-          this.props.manifestJSON['app.js']
-        }`}
-        defer
-      />
+      <script key="vendor" src={`${this.props.staticVendorUrl}/${this.props.manifestJSON['vendor.js']}`} defer />,
+      <script key="bundle" src={`${this.props.staticBundleUrl}/js/${this.props.manifestJSON['app.js']}`} defer />
     ];
   }
 
@@ -99,48 +79,31 @@ class Layout extends Component {
 
     if (env === 'test') {
       return this.props.chunks.map(chunk => (
-        <script
-          key={chunk}
-          src={`/js/${this.props.manifestJSON[`${chunk}.js`]}`}
-          defer
-        />
+        <script key={chunk} src={`/js/${this.props.manifestJSON[`${chunk}.js`]}`} defer />
       ));
     }
 
     return this.props.chunks.map(chunk => (
-      <script
-        key={chunk}
-        src={`${this.props.staticBundleUrl}/${this.props.manifestJSON[chunk]}`}
-        defer
-      />
+      <script key={chunk} src={`${this.props.staticBundleUrl}/${this.props.manifestJSON[chunk]}`} defer />
     ));
   }
 
   render() {
     return (
-      <body className="layout">
-        <Header />
-
+      <body data-ma-header="teal">
         <ErrorBoundary
           onError={(error, componentStack) => {
             log.error(componentStack, error);
           }}
           fallbackcomponent={<div>Error</div>}
         >
-          <TransitionGroup
-            enter={true}
-            exit={true}
-            appear={true}
-            className="main"
-            role="main"
-            component="main"
-          >
+          <TransitionGroup enter exit appear className="main" role="main" component="main">
             <CSSTransition
               key={this.props.location.pathname}
               classNames="fadeTranslate"
               timeout={1000}
-              mountOnEnter={true}
-              unmountOnExit={true}
+              mountOnEnter
+              unmountOnExit
             >
               {renderRoutes(this.props.route.routes, this.props.location)}
             </CSSTransition>
@@ -170,7 +133,7 @@ Layout.propTypes = {
   route: PropTypes.shape({
     routes: PropTypes.arrayOf(PropTypes.shape({}))
   }),
-  env: PropTypes.string.isRequired,
+  env: PropTypes.string,
   chunks: PropTypes.arrayOf(PropTypes.string),
   manifestJSON: PropTypes.shape({
     'vendor.js': PropTypes.string,

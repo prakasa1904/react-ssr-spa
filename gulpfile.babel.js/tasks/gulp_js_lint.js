@@ -26,7 +26,9 @@ gulp.task('js-lint-src', function lintSrc() {
 
 gulp.task('js-lint-gulp', function lintGulp() {
   const gulpConf = cloneDeep(conf);
+
   gulpConf.rules['import/no-extraneous-dependencies'] = 0;
+
   return gulp
     .src('gulpfile.babel.js/**/*.js')
     .pipe(eslint(gulpConf))
@@ -36,9 +38,11 @@ gulp.task('js-lint-gulp', function lintGulp() {
 
 gulp.task('js-lint-test', function lintTests() {
   const baseConfig = cloneDeep(config.eslint.conf);
+
   baseConfig.rules['prefer-arrow-callback'] = 0;
   baseConfig.rules['func-names'] = 0;
   baseConfig.rules['import/no-extraneous-dependencies'] = 0;
+
   return gulp
     .src('test/**/*.js')
     .pipe(
@@ -47,23 +51,21 @@ gulp.task('js-lint-test', function lintTests() {
         configFile: configFilePath,
         rules: baseConfig.rules,
         globals: ['$']
-      })
+      }),
     )
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
 
-gulp.task(
-  'js-lint',
-  ['js-lint-src', 'js-lint-gulp', 'js-lint-test'],
-  function jslint(cb) {
-    cb();
-  }
-);
+gulp.task('js-lint', ['js-lint-src', 'js-lint-gulp', 'js-lint-test'], function jslint(cb) {
+  cb();
+});
 
 gulp.task('js-lint-src-fix', function lintSrc() {
   const confFix = cloneDeep(conf);
+
   confFix.fix = true;
+
   return gulp
     .src('src/**/*.js')
     .pipe(eslint(confFix))
@@ -73,8 +75,10 @@ gulp.task('js-lint-src-fix', function lintSrc() {
 
 gulp.task('js-lint-gulp-fix', function lintGulp() {
   const confFix = cloneDeep(conf);
+
   confFix.fix = true;
   confFix.rules['import/no-extraneous-dependencies'] = 0;
+
   return gulp
     .src('gulpfile.babel.js/**/*.js')
     .pipe(eslint(confFix))
@@ -84,9 +88,11 @@ gulp.task('js-lint-gulp-fix', function lintGulp() {
 
 gulp.task('js-lint-test-fix', function lintTests() {
   const baseConfig = cloneDeep(config.eslint.conf);
+
   baseConfig.rules['prefer-arrow-callback'] = 0;
   baseConfig.rules['func-names'] = 0;
   baseConfig.rules['import/no-extraneous-dependencies'] = 0;
+
   return gulp
     .src('test/**/*.js')
     .pipe(
@@ -96,16 +102,12 @@ gulp.task('js-lint-test-fix', function lintTests() {
         configFile: configFilePath,
         rules: baseConfig.rules,
         globals: ['$']
-      })
+      }),
     )
     .pipe(eslint.format())
     .pipe(gulpIf(isFixed, gulp.dest('test')));
 });
 
-gulp.task(
-  'js-lint-fix',
-  ['js-lint-src-fix', 'js-lint-gulp-fix', 'js-lint-test-fix'],
-  function jslint(cb) {
-    cb();
-  }
-);
+gulp.task('js-lint-fix', ['js-lint-src-fix', 'js-lint-gulp-fix', 'js-lint-test-fix'], function jslint(cb) {
+  cb();
+});

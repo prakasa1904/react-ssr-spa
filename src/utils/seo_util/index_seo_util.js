@@ -14,10 +14,8 @@ export default function(state, data) {
     },
     title: 'Homepage of react-ssr-spa',
     url: last(get(state, 'config.navHistory')),
-    description:
-      'An example of simple server rendering a react progressive web app.',
-    image:
-      'https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
+    description: 'An example of simple server rendering a react progressive web app.',
+    image: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png',
     extend: [
       {
         meta: [

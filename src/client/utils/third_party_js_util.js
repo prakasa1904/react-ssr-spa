@@ -66,7 +66,6 @@ export class ThirdPartyJs {
     window.fbq.version = '2.0';
     window.fbq.queue = [];
 
-
     window.fbq('init', '');
     window.fbq('track', 'PageView');
 

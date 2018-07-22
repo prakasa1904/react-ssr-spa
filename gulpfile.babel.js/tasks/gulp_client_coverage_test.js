@@ -25,9 +25,11 @@ gulp.task('client-coverage', function clientIntegrationTest(done) {
             .close(function closeServer() {
               // eslint-disable-next-line global-require, import/no-dynamic-require
               const redis = require(redisPath).default;
+
               if (redis.quit) {
                 redisPath.quit();
               }
+
               log('Closing express server');
               done();
             });

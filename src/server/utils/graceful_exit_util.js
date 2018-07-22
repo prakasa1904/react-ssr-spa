@@ -8,6 +8,7 @@ import config from '../config';
 
 export default (err, silent) => {
   const exitCode = err ? 1 : 0;
+
   if (err) {
     log.info(`Process exiting because of error: ${err.message}`);
     log.fatal(
@@ -28,9 +29,11 @@ export default (err, silent) => {
     if (config.get('cacheEnabled')) {
       if (redisClient && redisClient.quit) {
         redisClient.quit();
+
         return process.exit(exitCode);
       }
     }
+
     return process.exit(exitCode);
   }
 

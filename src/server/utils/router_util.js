@@ -7,5 +7,6 @@ export default (globDir, router) => {
     .forEach(function setRoute(routeFunc) {
       routeFunc.default(router);
     });
+
   return router;
 };

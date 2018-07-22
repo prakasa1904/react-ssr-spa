@@ -8,6 +8,7 @@ import searchAsyncAction from './async_search_actions';
 
 export default function fetchRepoDetail(params, dispatch, state) {
   dispatch(searchPageActions.searchPageLoading());
+
   return P.all([searchAsyncAction(params, dispatch, state)])
     .then(function handleRepoDetailData() {
       dispatch(searchPageActions.searchPageLoaded());
@@ -15,6 +16,6 @@ export default function fetchRepoDetail(params, dispatch, state) {
     .catch(function handleUserError(err) {
       log.error(err, 'Error in search page.');
       dispatch(notFoundActionCreator(500, 'ERROR_STATUS'));
-      dispatch(searchPageActions.searchPageLoadError(err, state));
+      dispatch(searchPageActions.searchPageError(err, state));
     });
 }

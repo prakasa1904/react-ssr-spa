@@ -9,14 +9,11 @@ function validateUuid(str) {
 }
 
 // http://validatejs.org/#custom-validator
-validate.validators.uuidv4 = function uuidv4(
-  value,
-  options,
-  key /* , attributes */
-) {
+validate.validators.uuidv4 = function uuidv4(value, options, key /* , attributes */) {
   if (validateUuid(value) === true) {
     return null;
   }
+
   return `${key} is not a valid uuid version 4.`;
 };
 

@@ -16,10 +16,7 @@ class Config extends Component {
       return {};
     }
 
-    clonedState.config.initialQueryParams = serialize(
-      clonedState.config.initialQueryParams,
-      { isJSON: true }
-    );
+    clonedState.config.initialQueryParams = serialize(clonedState.config.initialQueryParams, { isJSON: true });
     const state = initialPageLoad ? serialize(clonedState) : '';
 
     /* eslint-disable react/no-danger */

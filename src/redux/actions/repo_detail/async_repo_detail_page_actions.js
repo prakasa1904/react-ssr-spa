@@ -7,6 +7,7 @@ import repoDetailAsyncAction from './async_repo_detail_actions';
 
 export default function fetchRepoDetail(params, dispatch, state) {
   dispatch(repoDetailPageActions.repoDetailPageLoading());
+
   return P.all([repoDetailAsyncAction(params, dispatch, state)])
     .then(function handleRepoDetailData(actions) {
       dispatch(repoDetailPageActions.repoDetailPageLoaded(state, actions));

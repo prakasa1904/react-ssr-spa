@@ -5,6 +5,7 @@ import log from '../../../services/logger_service';
 
 export default function fetchIndexData(params, dispatch, state) {
   dispatch(indexPageActions.indexPageLoading());
+
   return P.all([
     // This is a static page, but if you needed data
   ])

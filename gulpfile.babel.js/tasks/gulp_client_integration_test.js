@@ -27,9 +27,11 @@ gulp.task('client-integration-test', function clientIntegrationTest(done) {
             .createOrGetServer()
             .close(function closeServer() {
               const redis = require(redisPath).default; // eslint-disable-line global-require
+
               if (redis.quit) {
                 redisPath.quit();
               }
+
               log('Closing express server');
               done();
             });

@@ -29,6 +29,7 @@ gulp.task('upload-static-files', function publishAWS() {
     .pipe(
       rename(function renamePlugin(path) {
         path.dirname = `/${bundle}/${path.dirname}`; // eslint-disable-line no-param-reassign
+
         return path;
       })
     )
@@ -65,6 +66,7 @@ gulp.task('upload-vendor-file', function publishAWS() {
     .pipe(
       rename(function renamePlugin(path) {
         path.dirname = `/${vendor}/${path.dirname}`; // eslint-disable-line no-param-reassign
+
         return path;
       })
     )

@@ -12,6 +12,7 @@ function ClientSideHead(initialPageLoad, attr) {
   if (!initialPageLoad) {
     return <Helmet {...attr} />;
   }
+
   return null;
 }
 

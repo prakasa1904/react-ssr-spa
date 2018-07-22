@@ -68,6 +68,7 @@ module.exports = {
       chunks: ['app'],
       minChunks(module /* , count */) {
         const { context } = module;
+
         return context && context.indexOf('node_modules') >= 0;
       },
       filename: 'vendor.js'
@@ -96,7 +97,7 @@ module.exports = {
                   'env',
                   {
                     targets: {
-                      browsers: ['last 2 versions']
+                      browsers: ['last 4 versions']
                     }
                   }
                 ]

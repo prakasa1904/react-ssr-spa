@@ -1,16 +1,17 @@
 import get from 'lodash/get';
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import withRouter from 'react-router/withRouter';
-import Link from 'react-router-dom/Link';
 
 import loadData from './index_page_data_fetch';
 
-import Footer from './../../../components/footer/footer';
+import Header from './../../../components/Header';
+import Content from './../../../components/Content';
+import Sidebar from './../../../components/Sidebar';
 
 class Homepage extends Component {
-  componentWillMount() {
+  componentDidMount() {
     if (!get(this.props, 'state.config.initialPageLoad')) {
       loadData(this.props.match, this.props.dispatch, this.props.state);
     } else {
@@ -20,11 +21,12 @@ class Homepage extends Component {
 
   render() {
     return (
-      <div className="index-page">
-        <h1>Welcome to react-ssr-spa working demo.</h1>
-        <Link to="/repo/michaelBenin/react-ssr-spa">demo: react-ssr-spa</Link>
-        <Footer />
-      </div>
+      <Fragment>
+        <Header />
+        <Content>
+          <Sidebar withTab={false} />
+        </Content>
+      </Fragment>
     );
   }
 }

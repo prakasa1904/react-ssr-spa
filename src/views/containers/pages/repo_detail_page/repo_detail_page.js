@@ -20,6 +20,7 @@ class RepoDetail extends Component {
   render() {
     if (this.props.error) {
       const errorMessage = "We're sorry, please try again later.";
+
       return (
         <section className="repo-detail-page">
           <article className="repo-detail-page__main">
@@ -43,6 +44,7 @@ class RepoDetail extends Component {
     }
 
     const { repo } = this.props;
+
     return (
       <section className="repo-detail-page">
         <article className="repo-detail-page__main">

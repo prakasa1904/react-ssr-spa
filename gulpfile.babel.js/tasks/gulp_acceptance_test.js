@@ -23,6 +23,7 @@ gulp.task('start-test-server', done => {
 
 gulp.task('kill', () => {
   const gracefulExit = require('../../dist/server/utils/graceful_exit_util'); // eslint-disable-line global-require, max-len
+
   gracefulExit.default(false, true);
 });
 

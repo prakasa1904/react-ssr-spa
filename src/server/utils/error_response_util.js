@@ -8,6 +8,7 @@ function mapErrorList(errorItem) {
 export default (message, code, errorList) => {
   if (!message || !code) {
     log.fatal('Logger used incorrectly.');
+
     return {
       error: {
         message: 'Create Error Response used incorrectly.'

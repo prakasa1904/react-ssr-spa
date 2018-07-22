@@ -5,6 +5,7 @@ import log from '../../../services/logger_service';
 
 export default function fetchAboutData(params, dispatch, state) {
   dispatch(aboutPageActions.aboutPageLoading());
+
   return P.all([
     // This is a static page, but if you needed data
   ])

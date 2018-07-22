@@ -21,6 +21,7 @@ if (config.get('cacheEnabled')) {
       resolve(true);
     });
   });
+
   bootPromises.push(redisReady);
 }
 

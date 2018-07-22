@@ -12,6 +12,7 @@ gulp.task('sass-prod', function sassProd() {
     sassConf,
     autoprefixerBrowsers
   } = config.styles.main;
+
   return gulp
     .src(stylesSrc)
     .pipe(sass(sassConf).on('error', sass.logError))

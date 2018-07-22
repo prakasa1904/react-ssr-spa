@@ -11,12 +11,6 @@ import notFoundRoute from '../views/containers/pages/not_found_page/not_found_ro
 export default [
   {
     component: Layout,
-    routes: [
-      aboutRoute,
-      searchResultsRoute,
-      repoDetailRoute,
-      IndexPageRoute,
-      notFoundRoute
-    ]
+    routes: [aboutRoute, searchResultsRoute, repoDetailRoute, IndexPageRoute, notFoundRoute]
   }
 ];

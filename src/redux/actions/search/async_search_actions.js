@@ -7,6 +7,7 @@ import log from '../../../services/logger_service';
 
 export default function fetchSearchAction(query, dispatch, state) {
   dispatch(searchActions.searchLoading());
+
   return SearchModel.fetch(query, state)
     .then(function handleSearchModelData(searchData) {
       dispatch(searchActions.searchLoaded(searchData.data, state));

@@ -45,9 +45,11 @@ function createLogFn(level) {
       // console error if in development
       return false;
     }
+
     if (typeof data === 'string') {
       return log(level, {}, data);
     }
+
     return log(level, data, message);
   };
 }

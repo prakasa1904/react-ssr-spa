@@ -14,10 +14,7 @@ class Search extends Component {
   }
 
   componentWillMount() {
-    if (
-      !get(this.props, 'state.config.initialPageLoad') ||
-      !this.props.isLoading
-    ) {
+    if (!get(this.props, 'state.config.initialPageLoad') || !this.props.isLoading) {
       loadData(this.props.match, this.props.dispatch, this.props.state);
     }
     /*
@@ -45,7 +42,7 @@ class Search extends Component {
     if (this.props.error === true) {
       return (
         <section key="search" className="search">
-          <h1>We're sorry! There was an error. Message: </h1>
+          <h1>Mohon maaf! terjadi kesalahan. Pesan: </h1>
           <p>{this.props.errorMessage}</p>
           <Footer />
         </section>

@@ -8,9 +8,8 @@ export default function fetchIndexData(match, dispatch, state) {
       return false;
     }
   }
-  return asyncIndexPageAction(match.params, dispatch, state).catch(
-    function handleError(err) {
-      log.error(err);
-    }
-  );
+
+  return asyncIndexPageAction(match.params, dispatch, state).catch(function handleError(err) {
+    log.error(err);
+  });
 }

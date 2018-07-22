@@ -8,6 +8,7 @@ export default function Script({ innerHtml, type, src }) {
       <script type={type} dangerouslySetInnerHTML={{ __html: innerHtml }} />
     );
   }
+
   return <script type={type} src={src} />;
 }
 
